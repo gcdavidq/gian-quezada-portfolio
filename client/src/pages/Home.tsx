@@ -42,6 +42,7 @@ import {
   Zap,
 } from "lucide-react";
 import {
+  awards,
   certifications,
   education,
   experiences,
@@ -460,12 +461,23 @@ export default function Home() {
           <div className="container experience-grid">
             <div className="experience-stamp"><span className="section-index">04 / recorrido</span><div className="stamp-ring"><span>GQ</span><small>BUILDING<br />IN PUBLIC</small></div><p>La experiencia también<br />se construye colaborando.</p></div>
             <div className="experience-content">
-              <div className="section-heading-row"><div><h2>Experiencia<br /><em>en contexto.</em></h2></div><p className="heading-note">Pasantía, logros<br />y formación continua.</p></div>
+              <div className="section-heading-row"><div><h2>Experiencia<br /><em>en contexto.</em></h2></div><p className="heading-note">Prácticas, pasantías, logros<br />y formación continua.</p></div>
               {experiences.map((experience) => (
                 <article className="experience-item" key={experience.title}>
                   <div className="experience-label">{experience.label}</div>
                   <div className="experience-main">
-                    <div><h3>{experience.title}</h3><p>{experience.text}</p></div>
+                    <div>
+                      <h3>{experience.title}</h3>
+                      <p>{experience.text}</p>
+                      {experience.highlights && (
+                        <ul className="experience-highlights">
+                          {experience.highlights.map((item) => <li key={item}>{item}</li>)}
+                        </ul>
+                      )}
+                      {experience.link && (
+                        <a className="experience-link" href={experience.link.url} target="_blank" rel="noopener noreferrer"><Github size={14} /> {experience.link.label} <ArrowUpRight size={14} /></a>
+                      )}
+                    </div>
                     <div className="experience-side"><span>{experience.period}</span><div className="tag-row">{experience.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div>
                   </div>
                 </article>
@@ -488,11 +500,16 @@ export default function Home() {
                   <figcaption><span className="signature-line" /><span><b>{item.name}</b><small>{item.role}</small></span></figcaption>
                 </figure>
               ))}
-              <div className="award-card">
-                <span className="award-icon"><Trophy size={22} /></span>
-                <small>Hackathon UPCH 2025</small>
-                <h3>Finalista · Top 8</h3>
-                <p>Proyecto FocusUp: una plataforma de organización personalizada para cada estudiante.</p>
+              <div className="award-stack">
+                {awards.map((award) => (
+                  <div className="award-card" key={award.event}>
+                    <span className="award-icon"><Trophy size={22} /></span>
+                    <small>{award.event}</small>
+                    <h3>{award.title}</h3>
+                    <p>{award.text}</p>
+                    {award.url && <a className="experience-link" href={award.url} target="_blank" rel="noopener noreferrer"><Github size={14} /> Ver repositorio <ArrowUpRight size={14} /></a>}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -566,7 +583,7 @@ export default function Home() {
             <div className="contact-intro">
               <span className="section-index">10 / contacto</span>
               <h2>¿Construimos<br /><em>algo juntos?</em></h2>
-              <p>Estoy abierto a prácticas pre-profesionales, oportunidades de aprendizaje, proyectos tecnológicos y colaboraciones en desarrollo de software, datos y cloud computing.</p>
+              <p>Estoy abierto a prácticas profesionales, oportunidades de aprendizaje, proyectos tecnológicos y colaboraciones en desarrollo de software, datos y cloud computing.</p>
               <div className="contact-links">
                 <a href={`mailto:${profile.email}`}><Mail size={16} /><span><small>Email</small>{profile.email}</span><ArrowUpRight size={15} /></a>
                 <a href={profile.linkedinUrl} target="_blank" rel="noopener noreferrer"><Linkedin size={16} /><span><small>LinkedIn</small>{profile.linkedin}</span><ArrowUpRight size={15} /></a>

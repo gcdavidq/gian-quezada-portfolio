@@ -205,6 +205,9 @@ h1 { margin: 0 0 23px; font-family: "Space Grotesk", sans-serif; font-size: clam
 .award-card small { color: var(--mint); font-family: "IBM Plex Mono", monospace; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
 .award-card h3 { margin: 8px 0 10px; font-family: "Space Grotesk", sans-serif; font-size: 27px; font-weight: 500; letter-spacing: -.06em; }
 .award-card p { margin: 0; color: var(--muted); font-size: 13px; }
+.award-stack { display: flex; flex-direction: column; gap: 16px; }.award-stack .award-card { flex: 1; padding: 24px; }.award-stack .award-icon { width: 40px; height: 40px; margin-bottom: 16px; }.award-stack .award-card h3 { font-size: 23px; }.award-card .experience-link { margin-top: 14px; }
+.experience-highlights { display: flex; flex-direction: column; gap: 7px; margin: 14px 0 0; padding: 0; list-style: none; }.experience-highlights li { position: relative; padding-left: 16px; color: var(--muted); font-size: 12px; line-height: 1.55; }.experience-highlights li::before { content: ""; position: absolute; left: 0; top: .62em; width: 6px; height: 6px; border-radius: 50%; background: var(--mint); }
+.experience-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; color: var(--mint); font-family: "IBM Plex Mono", monospace; font-size: 10px; transition: gap .2s ease; }.experience-link:hover { gap: 10px; }
 
 .skill-card.orange { color: var(--orange); }
 .soft-skills { margin-top: 70px; }
@@ -279,13 +282,13 @@ h1 { margin: 0 0 23px; font-family: "Space Grotesk", sans-serif; font-size: clam
 }
 
 @media (max-width: 980px) {
-  .testimonials-grid { grid-template-columns: 1fr 1fr; }.award-card { grid-column: 1 / -1; }
+  .testimonials-grid { grid-template-columns: 1fr 1fr; }.award-stack { grid-column: 1 / -1; flex-direction: row; }
   .soft-grid { grid-template-columns: 1fr 1fr; }
   .beyond-grid { grid-template-columns: 1fr; gap: 50px; }
 }
 
 @media (max-width: 700px) {
-  .testimonials-grid, .soft-grid { grid-template-columns: 1fr; }.award-card { grid-column: auto; }
+  .testimonials-grid, .soft-grid { grid-template-columns: 1fr; }.award-stack { grid-column: auto; flex-direction: column; }
   .node-photo { width: 70px; height: 70px; }
   .profile-card { grid-template-columns: 96px 1fr; }.profile-card-body { padding: 16px; }
   .edu-row { grid-template-columns: 1fr; gap: 8px; }.edu-note { justify-self: start; }

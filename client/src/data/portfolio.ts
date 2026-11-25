@@ -8,7 +8,7 @@ export const profile = {
   role: "Estudiante de Ingeniería Informática",
   university: "Universidad Peruana Cayetano Heredia",
   universityShort: "UPCH",
-  cycle: "9vo ciclo",
+  cycle: "10mo ciclo",
   location: "Lima, Perú",
   focus: "Data Science · Cloud Computing · Software",
   status: "Disponible para prácticas",
@@ -52,9 +52,11 @@ export type JourneyItem = {
 export const journey: JourneyItem[] = [
   { date: "2017–2021", title: "Educación secundaria", text: "Colegio Nacional San Nicolás.", status: "done" },
   { date: "2022", title: "Ingeniería Informática", text: "Ingreso a la Universidad Peruana Cayetano Heredia.", status: "done" },
-  { date: "2025-2026", title: "Pasantía de Desarrollo Web", text: "Plataforma para la automatización de convenios usando LLMs.", status: "done" },
-  { date: "2026–2027", title: "Prácticas pre-profesionales", text: "En búsqueda de una oportunidad para desarrollarme como profesional.", status: "current" },
+  { date: "2025–2026", title: "Pasantía de Desarrollo Web · DTI UPCH", text: "En la Dirección de TI de la UPCH construimos un sistema que automatiza la creación y gestión de convenios, con LLMs que agilizan su redacción y verifican que cumplan los requisitos.", status: "done" },
+  { date: "Ago 2026", title: "Pasantía · Clínica CREO+", text: "Reemplazando MediWeb por un sistema clínico propio con Angular y .NET.", status: "current" },
+  { date: "Sep 2026", title: "Data Manager · IMTAvH", text: "De archivos Excel de encuestas a una base de datos madre en PostgreSQL y Power BI.", status: "current" },
   { date: "2026", title: "Tesis", text: "Desarrollo y sustentación en interoperabilidad y estandares FHIR.", status: "current" },
+  { date: "2027+", title: "Prácticas profesionales", text: "El siguiente paso: llevar los datos y el software a un entorno profesional.", status: "next" },
   { date: "2027", title: "Bachiller y título", text: "Ingeniero Informático titulado.", status: "next" },
   { date: "2027", title: "Junior Data Scientist", text: "Practicante / Junior Data Scientist con base de arquitectura de software.", status: "next" },
   { date: "2028+", title: "Liderazgo técnico", text: "Tech Lead / Senior Developer.", status: "next" },
@@ -81,6 +83,25 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    id: "creo-empleos",
+    eyebrow: "HR Tech · Full stack en Azure",
+    title: "Creo Empleos — Portal de empleos con matching",
+    description:
+      "Portal que conecta candidatos universitarios y técnicos con empresas: registro guiado, lector de CV, búsqueda con filtros, porcentaje de compatibilidad con cada vacante y tablero Kanban para el proceso de selección. Nos encargamos del desarrollo backend en PHP (Laravel) y del despliegue en Azure.",
+    problem:
+      "Las empresas filtran CVs a mano y los candidatos no saben qué tan compatibles son con una vacante antes de postular.",
+    solution:
+      "Front en Angular, API REST en Laravel con MySQL y un microservicio en Python que calcula el match por habilidades obligatorias y deseables. Desplegado en Azure con Static Web Apps, Container Apps y MySQL Flexible Server.",
+    stack: ["Angular", "TypeScript", "Laravel", "PHP", "MySQL", "Python", "FastAPI", "Docker", "Azure", "Google OAuth"],
+    category: ["Web", "Cloud"],
+    role: "Equipo de 3 · backend en PHP y despliegue en Azure",
+    status: "Demo en línea",
+    accent: "orange",
+    visual: "screenshot",
+    image: "/img/projects/creo-empleos.png",
+    demo: "https://orange-desert-0187ea31e.5.azurestaticapps.net/creo/landing",
+  },
   {
     id: "focushive",
     eyebrow: "EdTech · Plataforma web",
@@ -167,7 +188,7 @@ export const projects: Project[] = [
     problem: "Rutas de recolección ineficientes que elevan costos operativos e impacto ambiental.",
     solution:
       "Algoritmo de optimización (Dijkstra sobre grafos viales con OSMnx y NetworkX) que calcula en tiempo real la ruta más eficiente para cada camión, con panel para municipios y conductores.",
-    stack: ["Python", "React", "MySQL", "AWS Lambda", "EC2", "S3", "CloudFront", "API Gateway", "OSMnx", "NetworkX"],
+    stack: ["Python", "React", "MySQL", "Power BI", "AWS Lambda", "EC2", "S3", "CloudFront", "API Gateway", "OSMnx", "NetworkX"],
     category: ["Cloud", "Data"],
     role: "Trabajo en equipo · algoritmo y despliegue",
     status: "Proyecto académico",
@@ -232,14 +253,72 @@ export const projects: Project[] = [
   },
 ];
 
-export const experiences = [
+export type Experience = {
+  label: string;
+  title: string;
+  text: string;
+  highlights?: string[];
+  period: string;
+  tags: string[];
+  link?: { label: string; url: string };
+};
+
+export const experiences: Experience[] = [
+  {
+    label: "Prácticas pre-profesionales · Ingeniería de datos",
+    title: "Practicante de Data Manager — Instituto de Medicina Tropical Alexander von Humboldt",
+    text: "Convierto encuestas de salud dispersas en archivos Excel en una única fuente de datos confiable para los investigadores.",
+    highlights: [
+      "Pipeline reproducible en Python con arquitectura medallón (bronze → silver → gold): ingesta, limpieza y normalización.",
+      "Base de datos madre en PostgreSQL que alimenta dashboards y futuros análisis de los investigadores.",
+      "Dashboard en Power BI conectado directamente a la base de datos.",
+    ],
+    period: "Sep 2026 — Actualidad",
+    tags: ["Python", "ETL", "Arquitectura medallón", "PostgreSQL", "Power BI"],
+  },
+  {
+    label: "Pasantía · Modernización de sistemas clínicos",
+    title: "Pasante de Análisis y Desarrollo de Sistemas — Clínica CREO+ · UPCH",
+    text: "Del diagnóstico al código: reemplazamos MediWeb, el sistema de información clínica actual, por una solución web propia.",
+    highlights: [
+      "Análisis técnico y funcional de MediWeb.",
+      "Levantamiento, documentación y modelado de procesos de negocio.",
+      "Construcción del nuevo sistema con Angular y .NET.",
+    ],
+    period: "Ago 2026 — Actualidad",
+    tags: ["Angular", ".NET", "Análisis de sistemas", "Procesos de negocio", "Salud digital"],
+  },
+  {
+    label: "Voluntariado · Liderazgo",
+    title: "Coordinador del Área de Marketing — Voluntariado LEAD UPCH",
+    text: "Lidero la comunicación digital del voluntariado: qué se publica, cuándo y con qué resultado.",
+    highlights: [
+      "Administración de las redes sociales y del calendario de contenidos.",
+      "Creación de posts, piezas gráficas y reels para campañas, convocatorias y eventos.",
+      "Seguimiento de alcance e interacción para ajustar la estrategia, y coordinación del equipo de marketing.",
+    ],
+    period: "Ago 2026 — Actualidad",
+    tags: ["Redes sociales", "Contenido", "Métricas", "Liderazgo"],
+  },
+  {
+    label: "Reconocimiento · Hackathon",
+    title: "4.º lugar — Hackathon Interdisciplinaria UPCH 2026",
+    text: "Finalistas con YAWAR: un asistente de WhatsApp hace el seguimiento semanal del consumo de hierro en niños y un panel prioriza a qué familias visitar primero. Desarrollé el panel web en React y TypeScript.",
+    period: "Nov 2026",
+    tags: ["4.º lugar", "React", "TypeScript", "FastAPI", "Salud digital"],
+    link: { label: "Ver repositorio", url: "https://github.com/ArnySalazar/YAWAR" },
+  },
   {
     label: "Pasantía · Proyecto de automatización",
-    title: "Pasante de Desarrollo — Universidad Peruana Cayetano Heredia",
-    text:
-      "Participé en el desarrollo de una plataforma web que automatiza la gestión de convenios institucionales, reemplazando procesos manuales. Implemento módulos clave con PHP (Laravel) y PostgreSQL, ademas de LLMs que permitan un mejor analisis de cada convenio: flujos de aprobación, gestión de firmas de convenios y paneles de control con indicadores para mejorar la eficiencia y trazabilidad del proceso.",
+    title: "Pasante de Desarrollo — Dirección de TI, Universidad Peruana Cayetano Heredia",
+    text: "Construimos un sistema que automatiza la creación y gestión de convenios institucionales, con LLMs que agilizan su redacción y verifican que cumplan los requisitos.",
+    highlights: [
+      "Automaticé el 100 % del flujo de aprobación de convenios y reduje en 70 % los tiempos de validación, con módulos en PHP (Laravel) y PostgreSQL.",
+      "Control de estados y trazabilidad de cada documento: cada etapa de aprobación queda registrada y auditable.",
+      "Paneles con indicadores operativos en tiempo real y un LLM vía la API de Groq que revisa la información ingresada.",
+    ],
     period: "May 2025 — Jun 2026",
-    tags: ["PHP", "Laravel", "PostgreSQL", "Dashboards", "GROQ"],
+    tags: ["PHP", "Laravel", "PostgreSQL", "Dashboards", "Groq"],
   },
   {
     label: "Reconocimiento · Hackathon",
@@ -253,9 +332,23 @@ export const experiences = [
     label: "Programa · Formación continua",
     title: "Oracle Next Education (ONE) — Oracle + Alura Latam",
     text:
-      "Programa de formación en tecnología de Oracle y Alura Latam. Completé la formación Principiante en Programación (10 cursos, 78 horas) y opté por la ruta de Especialista en Data Science y AI.",
-    period: "Jun 2025 — Agosto 2026",
+      "Programa de formación en tecnología de Oracle y Alura Latam. Completé la formación Principiante en Programación (10 cursos, 78 horas) y la ruta de Especialista en Data Science y AI.",
+    period: "Jun 2025 — Jul 2026",
     tags: ["Lógica de programación", "Data Science", "AI", "Virtual", "ML"],
+  },
+];
+
+export const awards: { event: string; title: string; text: string; url?: string }[] = [
+  {
+    event: "Hackathon UPCH 2026",
+    title: "4.º lugar · Finalista",
+    text: "YAWAR: seguimiento semanal por WhatsApp del consumo de hierro en niños y un panel que prioriza las visitas del personal de salud.",
+    url: "https://github.com/ArnySalazar/YAWAR",
+  },
+  {
+    event: "Hackathon UPCH 2025",
+    title: "Finalista · Top 8",
+    text: "Proyecto FocusUp: una plataforma de organización personalizada para cada estudiante.",
   },
 ];
 
@@ -276,10 +369,10 @@ export const testimonials = [
 
 export const skills: { title: string; kicker: string; tone: Accent; items: string[] }[] = [
   { title: "Lenguajes", kicker: "La base para resolver problemas.", tone: "mint", items: ["Python", "JavaScript", "TypeScript", "C++", "C", "SQL", "R", "PHP"] },
-  { title: "Backend", kicker: "APIs y datos que sostienen el producto.", tone: "blue", items: ["Node.js", "FastAPI", "Flask", "Laravel", "PostgreSQL", "MySQL", "MongoDB", "REST APIs"] },
-  { title: "Frontend", kicker: "Interfaces claras y responsivas.", tone: "violet", items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "HTML", "CSS", "Figma"] },
-  { title: "Cloud & DevOps", kicker: "Llevar las soluciones a producción.", tone: "orange", items: ["AWS", "EC2", "S3", "Lambda", "Amplify", "CloudFront", "Docker", "Git", "CI/CD", "Linux"] },
-  { title: "AI / ML & Data", kicker: "De los datos a las decisiones.", tone: "mint", items: ["TensorFlow", "PyTorch", "Scikit-learn", "Pandas", "Power BI", "Excel", "NetworkX"] },
+  { title: "Backend", kicker: "APIs y datos que sostienen el producto.", tone: "blue", items: ["Node.js", "FastAPI", "Flask", "Laravel", ".NET", "PostgreSQL", "MySQL", "MongoDB", "REST APIs"] },
+  { title: "Frontend", kicker: "Interfaces claras y responsivas.", tone: "violet", items: ["React", "Angular", "Next.js", "TypeScript", "Tailwind CSS", "HTML", "CSS", "Figma"] },
+  { title: "Cloud & DevOps", kicker: "Llevar las soluciones a producción.", tone: "orange", items: ["AWS", "EC2", "S3", "Lambda", "Amplify", "CloudFront", "Azure", "Docker", "Git", "CI/CD", "Linux"] },
+  { title: "AI / ML & Data", kicker: "De los datos a las decisiones.", tone: "mint", items: ["TensorFlow", "PyTorch", "Scikit-learn", "Pandas", "ETL", "Arquitectura medallón", "Power BI", "Power Automate", "Excel", "NetworkX"] },
   { title: "Métodos & herramientas", kicker: "Cómo trabajo en equipo.", tone: "blue", items: ["Scrum", "Metodologías ágiles", "Jira", "GitHub", "Google Workspace", "Windows", "Linux"] },
 ];
 
@@ -304,15 +397,15 @@ export const education = [
     period: "Abr 2022 — Actualidad",
     title: "Ingeniería Informática",
     institution: "Universidad Peruana Cayetano Heredia",
-    note: "9no ciclo",
+    note: "10mo ciclo · Tercio superior",
     current: true,
   },
   {
-    period: "Jun 2025 — Agosto 2026",
+    period: "Jun 2025 — Jul 2026",
     title: "Oracle Next Education (ONE)",
     institution: "Oracle + Alura Latam · Virtual",
     note: "Especialista en Data Science y AI",
-    current: true,
+    current: false,
   },
   {
     period: "2017 — 2021",
